@@ -30,6 +30,23 @@ contract("CommentsTests", function ( accounts ) {
     assert(balanceBefore > balanceAfter);
   });
 
+  it('should not cost any ethereum to get a comment', async () => {
+    const instance = await Comments.new();
+    await instance.addComment("Hello, World!", { from: accounts[0] });
+    const balanceBefore = await web3.eth.getBalance(accounts[0]);
+    await instance.getComment(0);
+    const balanceAfter = await web3.eth.getBalance(accounts[0]);
+    assert(balanceBefore == balanceAfter);
+  });
+
+  it('should get the comment by index', async () => {
+    const instance = await Comments.new();
+    await instance.addComment("Hello, World!", { from: accounts[0] });
+    await instance.addComment("Hello, Universe!", { from: accounts[0] });
+    const comment = await instance.getComment(1);
+    assert.equal(comment[0], "Hello, Universe!");
+  });
+
   it('should get the number of comments', async () => {
     const instance = await Comments.new();
     await instance.addComment("Awesome post", { from: accounts[0] });
