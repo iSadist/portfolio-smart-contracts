@@ -7,6 +7,8 @@ const Comments = artifacts.require("Comments");
  */
 contract("CommentsTests", function ( accounts ) {
 
+  // MARK: Function addComment
+
   it("should add a comment", async () => {
     const instance = await Comments.new();
     await instance.addComment(0, "Hello, World!", { from: accounts[0] });
@@ -40,6 +42,8 @@ contract("CommentsTests", function ( accounts ) {
     assert(balanceBefore > balanceAfter);
   });
 
+  // MARK:  Function getComment
+
   it('should not cost any ethereum to get a comment', async () => {
     const instance = await Comments.new();
     await instance.addComment(1111, "Hello, World!", { from: accounts[0] });
@@ -56,6 +60,23 @@ contract("CommentsTests", function ( accounts ) {
     const comment = await instance.getComment(99, 1);
     assert.equal(comment[0], "Hello, Universe!");
   });
+
+  // MARK: Function getAllComments
+
+  it('should get all comments', async () => {
+    const instance = await Comments.new();
+    await instance.addComment(99, "Hello, World!", { from: accounts[0] });
+    await instance.addComment(99, "Hello, Universe!", { from: accounts[0] });
+    const comments = await instance.getAllComments(99);
+    assert.equal(comments[0].length, 2);
+    assert.equal(comments[1].length, 2);
+    assert.equal(comments[0][0], "Hello, World!");
+    assert.equal(comments[0][1], "Hello, Universe!");
+    assert.equal(comments[1][0], accounts[0]);
+    assert.equal(comments[1][1], accounts[0]);
+  });
+
+  // MARK:  Function getCommentsCount
 
   it('should get the number of comments', async () => {
     const instance = await Comments.new();

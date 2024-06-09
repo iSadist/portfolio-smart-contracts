@@ -19,6 +19,19 @@ contract Comments {
     return (comment.text, comment.author);
   }
 
+  function getAllComments(uint _postId) public view returns (string[] memory, address[] memory) {
+    Comment[] memory postComments = comments[_postId];
+    string[] memory texts = new string[](postComments.length);
+    address[] memory authors = new address[](postComments.length);
+
+    for (uint i = 0; i < postComments.length; i++) {
+      texts[i] = postComments[i].text;
+      authors[i] = postComments[i].author;
+    }
+
+    return (texts, authors);
+  }
+
   function getCommentsCount(uint _postId) public view returns (uint) {
     return comments[_postId].length;
   }
