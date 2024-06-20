@@ -41,10 +41,10 @@
  * https://trufflesuite.com/docs/truffle/getting-started/using-the-truffle-dashboard/
  */
 
-// require('dotenv').config();
-// const { MNEMONIC, PROJECT_ID } = process.env;
-
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+require('dotenv').config();
+const { MNEMONIC } = process.env;
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const SEPOLIA_RPC_URL = 'https://sepolia.infura.io/v3/5496d310e4a442c3a877c1b04d7d0103';
 
 module.exports = {
   /**
@@ -64,11 +64,23 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 9545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
+    ganache: {
+      host: "127.0.0.1",     // Localhost (default: none)
+      port: 7545,
+      network_id: "*",       // Any network (default: none)
+    },
+    sepolia: {
+      provider: () => new HDWalletProvider(MNEMONIC, SEPOLIA_RPC_URL),
+      network_id: 11155111, // Sepolia's network ID
+      confirmations: 2,     // Number of confirmations to wait between deployments. (default: 0)
+      timeoutBlocks: 200,   // Number of blocks before a deployment times out (minimum/default: 50)
+      skipDryRun: true      // Skip dry run before migrations? (default: false for public nets)
+    },
     //
     // An additional network, but with some advanced options…
     // advanced: {
@@ -96,12 +108,6 @@ module.exports = {
     //   network_id: 2111,   // This network is yours, in the cloud.
     //   production: true    // Treats this network as if it was a public net. (default: false)
     // }
-
-    development: {
-      host: "127.0.0.1",
-      port: 9545,
-      network_id: "*"
-    },
   },
 
   // Set default mocha options here, use special reporters, etc.

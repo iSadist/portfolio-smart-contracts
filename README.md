@@ -10,6 +10,8 @@ These are the tools and technologies used in the project.
 * geth
 * solidity
 
+Node version 18 should be used.
+
 # Folders
 
 ### ./build
@@ -40,3 +42,23 @@ Since the node is a fresh blockchain, the migration scrips need to run.
 `truffle test`
 
 Run the tests to make sure the code is working.
+
+# Using a test net
+
+In progress...
+
+ * Sepolia - test net
+
+ * Choose Sepolia in Meta Mask
+
+ * Get Mnemonic from Meta Mask
+
+ * Get RPC URL from Infura
+
+ * Setup .env file and enter RPC
+
+Run the tests on the test net
+`truffle test --network sepolia`
+
+Deploy the contract on the test net
+`truffle migrate --network sepolia`
