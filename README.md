@@ -43,6 +43,20 @@ Since the node is a fresh blockchain, the migration scrips need to run.
 
 Run the tests to make sure the code is working.
 
+# Solc version
+
+An important aspect in development to consider is the Solidity compiler version.
+It can be specified in truffle-config.js.
+
+Be sure to specify the same version in the pragma statement at the top of the contract files.
+
+# Testing using Geth
+Start a geth node
+`geth --http --dev`
+
+Migrate to the geth node
+`truffle migrate --network geth`
+
 # Using a test net
 
 In progress...

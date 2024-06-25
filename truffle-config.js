@@ -69,10 +69,15 @@ module.exports = {
      port: 9545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
     },
+    geth: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*",
+    },
     ganache: {
-      host: "127.0.0.1",     // Localhost (default: none)
+      host: "127.0.0.1",
       port: 7545,
-      network_id: "*",       // Any network (default: none)
+      network_id: "*",
     },
     sepolia: {
       provider: () => new HDWalletProvider(MNEMONIC, SEPOLIA_RPC_URL),
@@ -118,7 +123,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.21",      // Fetch exact version from solc-bin (default: truffle's version)
+      version: "0.8.19",      // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
