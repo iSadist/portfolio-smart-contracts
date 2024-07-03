@@ -42,9 +42,8 @@
  */
 
 require('dotenv').config();
-const { MNEMONIC } = process.env;
+const { MNEMONIC, SEPOLIA_RPC_URL } = process.env;
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const SEPOLIA_RPC_URL = 'https://sepolia.infura.io/v3/5496d310e4a442c3a877c1b04d7d0103';
 
 module.exports = {
   /**

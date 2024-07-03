@@ -57,19 +57,38 @@ Start a geth node
 Migrate to the geth node
 `truffle migrate --network geth`
 
+# Testing with Ganache UI or ganache-cli
+This one is similar to Geth.
+
+Start Ganache UI or run
+`ganache-cli`
+
+Migrate the contract to Ganache
+`truffle migrate --network ganache`
+
+Run the tests on the Ganache node
+`truffle test --network ganache`
+
 # Using a test net
+Before deploying to the main net, a test net should be used. In this project, Sepolia is used.
 
-In progress...
+Sepolia is a test net, mimicking the Ethereum main net. It is set up in *truffle-config.js* under networks > sepolia with its correct data.
 
- * Sepolia - test net
+To work properly, it needs an **RPC URL** and a **MNEMONIC** phrase.
 
- * Choose Sepolia in Meta Mask
+## Getting the Sepolia parameters
+First off, an Infura account is needed to communicate with Ethereum.
 
+* Setup & Login to Infura account
+* Get RPC URL from Infura
+* Setup .env (from .env.example) file and enter RPC
+
+Once you have that URL, the mnemonic phrase is needed. Any wallet will do, but let's use Meta Mask in this example.
+
+ * Install Meta Mask plugin
  * Get Mnemonic from Meta Mask
-
- * Get RPC URL from Infura
-
- * Setup .env file and enter RPC
+ * Choose Sepolia in Meta Mask
+ * Enter Mnemonic into .env file
 
 Run the tests on the test net
 `truffle test --network sepolia`
